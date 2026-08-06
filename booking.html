@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact & Booking | Pet Society Salon</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { color: #333; line-height: 1.6; background-color: #f9fbfd; }
+        a { text-decoration: none; color: inherit; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+        header { background: #ffffff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100; }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; }
+        .logo-container { display: flex; align-items: center; }
+        .logo-image { height: 60px; width: auto; margin-right: 15px; }
+        .logo-text { font-size: 1.5rem; font-weight: bold; color: #2b7a78; }
+        .nav-links { display: flex; list-style: none; gap: 20px; }
+        .nav-links a:hover { color: #2b7a78; }
+        .nav-links a.active { color: #2b7a78; font-weight: bold; }
+
+        .booking-hero { background: #172a3a; color: white; text-align: center; padding: 50px 20px; }
+        
+        .booking-layout { display: flex; flex-wrap: wrap; gap: 40px; margin: 50px 0; }
+        .contact-card { flex: 1 1 300px; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); height: fit-content; }
+        .calendar-card { flex: 2 1 500px; background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); min-height: 700px; }
+
+        iframe { width: 100%; height: 750px; border: none; border-radius: 8px; }
+
+        footer { background: #172a3a; color: #fff; text-align: center; padding: 20px 0; margin-top: 40px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo-container">
+                    <img src="your-logo-file.png" alt="Pet Society Salon Logo" class="logo-image">
+                    <div class="logo-text">Pet Society Salon</div>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="index.html#services">Services & Pricing</a></li>
+                    <li><a href="booking.html" class="active">Contact & Booking</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="booking-hero">
+        <div class="container">
+            <h1>Schedule Your Pet's Session</h1>
+            <p>Pick a date and time that works best for you!</p>
+        </div>
+    </div>
+
+    <section>
+        <div class="container">
+            <div class="booking-layout">
+                
+                <!-- Contact Information Side -->
+                <div class="contact-card">
+                    <h2>Get In Touch</h2>
+                    <br>
+                    <p><strong>📍 Location:</strong> 123 Pet Care Lane, Cityville</p>
+                    <p><strong>📞 Phone:</strong> (555) 123-4567</p>
+                    <p><strong>✉️ Email:</strong> hello@petsocietysalon.com</p>
+                    <br>
+                    <h3>Operating Hours</h3>
+                    <p>Monday – Saturday: 9:00 AM – 6:00 PM</p>
+                    <p>Sunday: Closed</p>
+                </div>
+
+                <!-- LeadConnector Interactive Booking Widget -->
+                <div class="calendar-card">
+                    <iframe src="https://api.leadconnectorhq.com/widget/booking/8Vcp3HRp3bGiYCO7gyBF" scrolling="yes"></iframe>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Pet Society Salon. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
