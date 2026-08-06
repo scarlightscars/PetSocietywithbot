@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Society Salon | Next-Gen Pet Pampering</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdfa', 100: '#ccfbf1', 500: '#14b8a6',
+                            600: '#0d9488', 700: '#0f766e', 900: '#134e4a', dark: '#0a192f',
+                        }
+                    },
+                    fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .glass-header { background: rgba(255,255,255,0.75); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+        .glass-card { background: rgba(255,255,255,0.85); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.6); }
+        .gradient-text { background: linear-gradient(135deg,#0d9488 0%,#0369a1 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-brand-500 selection:text-white overflow-x-hidden">
+
+    <!-- NAVIGATION -->
+    <header class="sticky top-0 z-50 glass-header border-b border-slate-200/50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="index.html" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-teal-400 flex items-center justify-center text-white shadow-lg shadow-brand-500/30 group-hover:scale-105 transition-transform duration-300">
+                        <i data-lucide="paw-print" class="w-6 h-6"></i>
+                    </div>
+                    <span class="text-xl font-extrabold tracking-tight text-slate-900 group-hover:text-brand-600 transition-colors">Pet Society</span>
+                </a>
+                <nav class="hidden md:flex items-center gap-8 font-semibold text-sm text-slate-600">
+                    <a href="index.html" class="text-brand-600">Home</a>
+                    <a href="about.html" class="hover:text-brand-600 transition-colors">About Us</a>
+                    <a href="#services" class="hover:text-brand-600 transition-colors">Services & Pricing</a>
+                    <a href="#hotel" class="hover:text-brand-600 transition-colors">Pet Hotel</a>
+                    <a href="booking.html" class="hover:text-brand-600 transition-colors">Contact</a>
+                </nav>
+                <div class="hidden md:flex items-center">
+                    <button onclick="openBookingChat()" class="relative inline-flex items-center justify-center px-6 py-3 font-bold text-white transition-all duration-300 bg-brand-600 rounded-xl hover:bg-brand-700 shadow-lg shadow-brand-500/25 hover:shadow-brand-500/40 hover:-translate-y-0.5 active:translate-y-0">
+                        Ask Kile AI
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative min-h-[85vh] flex items-center overflow-hidden bg-slate-900 text-white">
+        <div id="canvas-container" class="absolute inset-0 opacity-40 pointer-events-none"></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 z-10">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 space-y-8 hero-text-animate">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-500/10 border border-brand-500/30 text-brand-300 text-xs font-bold uppercase tracking-wider backdrop-blur-md">
+                        <span class="w-2 h-2 rounded-full bg-brand-400 animate-pulse"></span>
+                        Smart Weight & Pricing Engine Active
+                    </div>
+                    <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.1]">
+                        Luxury Pampering for Your <span class="gradient-text">Best Friend.</span>
+                    </h1>
+                    <p class="text-lg sm:text-xl text-slate-300 max-w-2xl font-normal leading-relaxed">
+                        Gentle, low-stress grooming tailored to Siberian Huskies, Maine Coons, and every beloved companion in between.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                        <button onclick="openBookingChat()" class="px-8 py-4 bg-brand-500 hover:bg-brand-600 text-white font-bold rounded-xl shadow-lg shadow-brand-500/30 hover:shadow-brand-500/50 transition-all flex items-center justify-center gap-2 text-base group">
+                            <i data-lucide="sparkles" class="w-5 h-5"></i>
+                            <span>Ask Kile for Rates & Booking</span>
+                        </button>
+                        <a href="#services" class="px-8 py-4 bg-slate-800/80 hover:bg-slate-800 border border-slate-700 text-slate-200 font-semibold rounded-xl backdrop-blur-md transition-all flex items-center justify-center">
+                            Explore Menu
+                        </a>
+                    </div>
+                </div>
+                <div class="lg:col-span-5 relative hero-card-animate hidden lg:block">
+                    <div class="relative mx-auto max-w-md">
+                        <div class="absolute -inset-1 rounded-3xl bg-gradient-to-r from-brand-500 to-sky-500 blur-xl opacity-30 animate-pulse"></div>
+                        <div class="relative glass-card p-8 rounded-3xl text-slate-800 shadow-2xl border border-white/40">
+                            <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?auto=format&fit=crop&q=80&w=800" alt="Grooming" class="rounded-2xl w-full h-64 object-cover shadow-md mb-6">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h4 class="font-bold text-lg text-slate-900">Certified Handling</h4>
+                                    <p class="text-sm text-slate-500">Hypoallergenic & Organic Baths</p>
+                                </div>
+                                <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center font-bold text-lg">4.9★</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section id="services" class="py-28 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 gsap-reveal">
+                <span class="text-brand-600 font-bold tracking-widest text-xs uppercase">Tailored Menu</span>
+                <h2 class="text-4xl font-extrabold text-slate-900 mt-2">Grooming Packages & Rates</h2>
+                <div class="inline-flex p-1.5 mt-8 bg-slate-200/80 rounded-2xl backdrop-blur-sm">
+                    <button id="btn-dogs" onclick="switchCategory('dogs')" class="px-8 py-3 rounded-xl font-bold text-sm transition-all duration-300 bg-white text-slate-900 shadow-md">
+                        🐶 Canine Care
+                    </button>
+                    <button id="btn-cats" onclick="switchCategory('cats')" class="px-8 py-3 rounded-xl font-bold text-sm transition-all duration-300 text-slate-600 hover:text-slate-900">
+                        🐱 Feline Spa
+                    </button>
+                </div>
+            </div>
+
+            <!-- CANINE CONTENT -->
+            <div id="dogs-view" class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 transition-all duration-500">
+                <div class="bg-white rounded-2xl p-6 shadow-xl border border-slate-100 flex flex-col justify-between gsap-card">
+                    <div>
+                        <div class="inline-block px-3 py-1 rounded-full bg-brand-50 text-brand-700 font-bold text-xs mb-4">Small (&lt;10kg)</div>
+                        <h3 class="text-xl font-extrabold text-slate-900 mb-4">Puppies & Minis</h3>
+                        <ul class="space-y-3 text-sm text-slate-600">
+                            <li class="flex justify-between"><span>Puppy First Bath</span> <strong class="text-slate-900">₱350</strong></li>
+                            <li class="flex justify-between"><span>Bath & Fluff</span> <strong class="text-slate-900">₱550</strong></li>
+                            <li class="flex justify-between"><span>Full Grooming</span> <strong class="text-slate-900">₱800</strong></li>
+                        </ul>
+                    </div>
+                    <button onclick="startBookingFor('Small Dog (<10kg)')" class="mt-8 block w-full text-center py-3 bg-slate-50 hover:bg-brand-50 text-brand-700 font-bold text-sm rounded-xl transition-colors">Book This Size</button>
+                </div>
+                <div class="bg-white rounded-2xl p-6 shadow-xl border border-slate-100 flex flex-col justify-between gsap-card">
+                    <div>
+                        <div class="inline-block px-3 py-1 rounded-full bg-brand-50 text-brand-700 font-bold text-xs mb-4">Medium (10kg - 14kg)</div>
+                        <h3 class="text-xl font-extrabold text-slate-900 mb-4">Mid-Size Breeds</h3>
+                        <ul class="space-y-3 text-sm text-slate-600">
+                            <li class="flex justify-between"><span>Bath & Fluff</span> <strong class="text-slate-900">₱650</strong></li>
+                            <li class="flex justify-between"><span>Full Grooming</span> <strong class="text-slate-900">₱1,000</strong></li>
+                        </ul>
+                    </div>
+                    <button onclick="startBookingFor('Medium Dog (10-14kg)')" class="mt-8 block w-full text-center py-3 bg-slate-50 hover:bg-brand-50 text-brand-700 font-bold text-sm rounded-xl transition-colors">Book This Size</button>
+                </div>
+                <div class="bg-gradient-to-b from-brand-900 to-slate-900 text-white rounded-2xl p-6 shadow-2xl flex flex-col justify-between relative overflow-hidden gsap-card">
+                    <div>
+                        <div class="inline-block px-3 py-1 rounded-full bg-brand-500 text-white font-bold text-xs mb-4">Large (15kg - 19kg)</div>
+                        <h3 class="text-xl font-extrabold mb-4">Siberians & Active</h3>
+                        <ul class="space-y-3 text-sm text-slate-300">
+                            <li class="flex justify-between"><span>Bath & Fluff</span> <strong class="text-white">₱850</strong></li>
+                            <li class="flex justify-between"><span>Full Grooming</span> <strong class="text-white">₱1,400</strong></li>
+                        </ul>
+                    </div>
+                    <button onclick="startBookingFor('Large Dog (15-19kg)')" class="mt-8 block w-full text-center py-3 bg-brand-500 hover:bg-brand-600 text-white font-bold text-sm rounded-xl shadow-lg shadow-brand-500/30 transition-all">Book This Size</button>
+                </div>
+                <div class="bg-white rounded-2xl p-6 shadow-xl border border-slate-100 flex flex-col justify-between gsap-card">
+                    <div>
+                        <div class="inline-block px-3 py-1 rounded-full bg-brand-50 text-brand-700 font-bold text-xs mb-4">Extra Large (20kg+)</div>
+                        <h3 class="text-xl font-extrabold text-slate-900 mb-4">Gentle Giants</h3>
+                        <ul class="space-y-3 text-sm text-slate-600">
+                            <li class="flex justify-between"><span>Bath & Fluff</span> <strong class="text-slate-900">₱1,500</strong></li>
+                            <li class="flex justify-between"><span>Full Grooming</span> <strong class="text-slate-900">₱1,800</strong></li>
+                        </ul>
+                    </div>
+                    <button onclick="startBookingFor('XL Dog (20kg+)')" class="mt-8 block w-full text-center py-3 bg-slate-50 hover:bg-brand-50 text-brand-700 font-bold text-sm rounded-xl transition-colors">Book This Size</button>
+                </div>
+            </div>
+
+            <!-- FELINE CONTENT -->
+            <div id="cats-view" class="hidden max-w-2xl mx-auto transition-all duration-500">
+                <div class="bg-white rounded-3xl p-8 shadow-2xl border border-slate-100 gsap-card">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 rounded-2xl bg-teal-100 text-teal-600 flex items-center justify-center font-bold text-xl">🐱</div>
+                        <div>
+                            <h3 class="text-2xl font-extrabold text-slate-900">All Cat Breeds & Sizes</h3>
+                            <p class="text-sm text-slate-500">Gentle, quiet-room handling for Persians, Maine Coons & Puspins.</p>
+                        </div>
+                    </div>
+                    <div class="space-y-4 divide-y divide-slate-100">
+                        <div class="pt-4 flex justify-between items-center"><span class="font-semibold text-slate-700">Cat First Bath</span> <span class="text-lg font-extrabold text-brand-600">₱350</span></div>
+                        <div class="pt-4 flex justify-between items-center"><span class="font-semibold text-slate-700">Bath & Fluff</span> <span class="text-lg font-extrabold text-brand-600">₱550</span></div>
+                        <div class="pt-4 flex justify-between items-center"><span class="font-semibold text-slate-700">Full Grooming Treatment</span> <span class="text-lg font-extrabold text-brand-600">₱800</span></div>
+                    </div>
+                    <button onclick="startBookingFor('Cat')" class="mt-8 block w-full text-center py-4 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-2xl shadow-lg shadow-brand-500/30 transition-all">Book Cat Session with Kile</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FLOATING CHAT BUTTON -->
+    <button id="chatToggle" class="fixed bottom-6 right-6 w-14 h-14 bg-brand-600 hover:bg-brand-700 text-white rounded-2xl shadow-2xl shadow-brand-500/50 flex items-center justify-center z-50 hover:scale-105 active:scale-95 transition-all duration-300">
+        <i data-lucide="bot" class="w-7 h-7"></i>
+    </button>
+
+    <!-- CHAT WINDOW -->
+    <div id="chatWindow" class="fixed bottom-24 right-6 w-[90vw] sm:w-[420px] h-[580px] bg-white/95 backdrop-blur-xl border border-slate-200/80 rounded-3xl shadow-2xl z-50 hidden flex-col overflow-hidden transition-all duration-300">
+        <div class="bg-slate-900 text-white p-4 flex justify-between items-center flex-shrink-0">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-xl bg-brand-500 flex items-center justify-center">
+                    <i data-lucide="brain" class="w-4 h-4 text-white"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-sm">Kile | Smart Pet AI</h4>
+                    <span class="text-[10px] text-emerald-400 flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Smart Calculator Active</span>
+                </div>
+            </div>
+            <button id="closeChat" class="text-slate-400 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
+        </div>
+
+        <div id="chatBody" class="flex-1 p-4 overflow-y-auto space-y-3 bg-slate-50/50 text-sm min-h-0">
+            <div class="bg-white p-3.5 rounded-2xl border border-slate-100 shadow-sm text-slate-700 max-w-[90%] leading-relaxed">
+                Hi! I'm <strong>Kile</strong> 🐾 — Pet Society's AI assistant. I can help with <strong>pricing, services, and bookings</strong> for both cats and dogs. What can I help you with?
+            </div>
+            <div id="initialQuickButtons" class="flex flex-wrap gap-2 pt-1">
+                <button onclick="sendQuickText('How much for a cat?')" class="px-3 py-1.5 bg-brand-50 border border-brand-200 text-brand-700 rounded-xl text-xs font-bold hover:bg-brand-100 transition-colors">🐱 Cat rates</button>
+                <button onclick="sendQuickText('My dog is 8kg')" class="px-3 py-1.5 bg-white border border-slate-200 text-slate-700 rounded-xl text-xs font-semibold hover:bg-slate-100 transition-colors">🐶 Dog pricing</button>
+                <button onclick="sendQuickText('What services do you offer?')" class="px-3 py-1.5 bg-white border border-slate-200 text-slate-700 rounded-xl text-xs font-semibold hover:bg-slate-100 transition-colors">✂️ Services</button>
+                <button onclick="startBookingFlow()" class="px-3 py-1.5 bg-brand-600 text-white rounded-xl text-xs font-bold hover:bg-brand-700 transition-colors">📅 Book Now</button>
+            </div>
+        </div>
+
+        <div class="p-3 bg-white border-t border-slate-100 flex gap-2 flex-shrink-0">
+            <input type="text" id="userInput" placeholder="Ask me anything about pet grooming..." class="flex-1 px-4 py-2 bg-slate-100 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500" onkeypress="handleKey(event)">
+            <button onclick="sendMessage()" class="p-2 bg-brand-600 hover:bg-brand-700 text-white rounded-xl transition-colors">
+                <i data-lucide="send" class="w-4 h-4"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- PET HOTEL SECTION -->
+    <section id="hotel" class="py-28 bg-slate-900 relative overflow-hidden">
+
+        <!-- Ambient glow blobs -->
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-brand-600/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-0 right-1/4 w-80 h-80 bg-sky-600/10 rounded-full blur-3xl pointer-events-none"></div>
+        <!-- Stars -->
+        <div class="absolute inset-0 pointer-events-none" id="hotelStars"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+            <!-- Header -->
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="inline-flex items-center gap-2 text-brand-400 font-bold tracking-widest text-xs uppercase mb-3">
+                    <span class="w-2 h-2 rounded-full bg-brand-400 animate-pulse"></span>
+                    Overnight & Boarding
+                </span>
+                <h2 class="text-4xl sm:text-5xl font-extrabold text-white leading-tight">
+                    The Pet Hotel
+                    <span class="block text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-sky-400">Where Tails Never Stop Wagging.</span>
+                </h2>
+                <p class="mt-4 text-slate-400 text-lg">Safe, cozy, and cage-free stays for dogs &amp; cats. Day care to long-term boarding — we treat every pet like royalty.</p>
+
+                <!-- Duration Switcher -->
+                <div class="inline-flex mt-8 p-1.5 bg-slate-800 border border-slate-700 rounded-2xl gap-1">
+                    <button id="hbtn-day" onclick="switchHotelView('day')" class="px-6 py-2.5 rounded-xl font-bold text-sm transition-all bg-brand-600 text-white shadow-lg shadow-brand-500/30">
+                        ☀️ Day Care
+                    </button>
+                    <button id="hbtn-night" onclick="switchHotelView('night')" class="px-6 py-2.5 rounded-xl font-bold text-sm transition-all text-slate-400 hover:text-white">
+                        🌙 Overnight
+                    </button>
+                    <button id="hbtn-week" onclick="switchHotelView('week')" class="px-6 py-2.5 rounded-xl font-bold text-sm transition-all text-slate-400 hover:text-white">
+                        📅 Weekly Stay
+                    </button>
+                </div>
+            </div>
+
+            <!-- ── DAY CARE VIEW ── -->
+            <div id="hotel-day" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 hotel-view">
+                <!-- card helper rendered by JS -->
+            </div>
+
+            <!-- ── OVERNIGHT VIEW ── -->
+            <div id="hotel-night" class="hidden hotel-view">
+                <div class="grid md:grid-cols-3 gap-6">
+
+                    <!-- Standard Den -->
+                    <div class="group relative bg-slate-800 border border-slate-700 hover:border-brand-500/60 rounded-3xl p-7 flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-brand-500/10">
+                        <div class="flex items-center justify-between mb-5">
+                            <div class="w-12 h-12 rounded-2xl bg-slate-700 group-hover:bg-brand-600/20 flex items-center justify-center text-2xl transition-colors">🛖</div>
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-slate-500 border border-slate-700 px-2 py-1 rounded-full">Standard</span>
+                        </div>
+                        <h3 class="text-xl font-extrabold text-white mb-1">Cozy Den</h3>
+                        <p class="text-slate-400 text-sm mb-6 leading-relaxed">A safe, clean private kennel with soft bedding, feeding, and 2× daily check-ins.</p>
+                        <ul class="space-y-2 text-sm text-slate-400 mb-8 flex-1">
+                            <li class="flex items-center gap-2"><span class="w-4 h-4 rounded-full bg-brand-500/20 text-brand-400 flex items-center justify-center text-[10px]">✓</span>Private kennel space</li>
+                            <li class="flex items-center gap-2"><span class="w-4 h-4 rounded-full bg-brand-500/20 text-brand-400 flex items-center justify-center text-[10px]">✓</span>2× meals included</li>
+                            <li class="flex items-center gap-2"><span class="w-4 h-4 rounded-full bg-brand-500/20 text-brand-400 flex items-center justify-center text-[10px]">✓</span>Morning &amp; evening check</li>
+                            <li class="flex items-center gap-2"><span class="w-4 h-4 rounded-full bg-brand-500/20 text-brand-400 flex items-center justify-center text-[10px]">✓</span>Daily health report</li>
+                        </ul>
+                        <div class="border-t border-slate-700 pt-4 space-y-1.5 text-xs text-slate-400">
+                            <div class="flex justify-between"><span>Small (&lt;10kg / Cat)</span><strong class="text-white">₱650 / night</strong></div>
+                            <div class="flex justify-between"><span>Medium (10–14kg)</span><strong class="text-white">₱900 / night</strong></div>
+                            <div class="flex justify-between"><span>Large (15–19kg)</span><strong class="text-white">₱1,300 / night</strong></div>
+                            <div class="flex justify-between"><span>XL (20kg+)</span><strong class="text-white">₱1,800 / night</strong></div>
+                        </div>
+                        <button onclick="openHotelBooking('Cozy Den')" class="mt-5 w-full py-3 bg-slate-700 hover:bg-brand-600 text-white font-bold rounded-xl text-sm transition-all">Book Cozy Den</button>
+                    </div>
+
+                    <!-- Comfort Suite — Featured -->
+                    <div class="group relative bg-gradient-to-b from-brand-900/80 to-slate-900 border-2 border-brand-500/50 rounded-3xl p-7 flex flex-col transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-500/20 scale-[1.02]">
+                        <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 bg-brand-500 text-white text-[10px] font-extrabold uppercase tracking-widest rounded-full shadow-lg shadow-brand-500/40">Most Popular</div>
+                        <div class="flex items-center justify-between mb-5">
+                            <div class="w-12 h-12 rounded-2xl bg-brand-500/20 flex items-center justify-center text-2xl">🛋️</div>
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-brand-400 border border-brand-500/40 px-2 py-1 rounded-full">Comfort</span>
+                        </div>
+                        <h3 class="text-xl font-extrabold text-white mb-1">Comfort Suite</h3>
+                        <p class="text-slate-300 text-sm mb-6 leading-relaxed">Spacious semi-private suite with playtime, cuddle sessions, and live photo updates.</p>
+                        <ul class="space-y-2 text-sm text-slate-300 mb-8 flex-1">
+                            <li class="flex items-center gap-2"><span class="w-4 h-4 rounded-full bg-brand-500/30 text-brand-300 flex items-center justify-center text-[10px]">✓</span>Semi-private suite</li>
+                            <li class="flex items-center gap-2"><span class="w-4 h-4 rounded-full bg-brand-500/30 text-brand-300 flex items-center justify-center text-[10px]">✓</span>3× meals + treats</li>
+                            <li class="flex items-center gap-2"><span class="w-4 h-4 rounded-full bg-brand-500/30 text-brand-300 flex items-center justify-center text-[10px]">✓</span>30-min supervised play</li>
+                            <li class="flex items-center gap-2"><span class="w-4 h-4 rounded-full bg-brand-500/30 text-brand-300 flex items-center justify-center text-[10px]">✓</span>Photo updates via chat</li>
+                            <li class="flex items-center gap-2"><span class="w-4 h-4 rounded-full bg-brand-500/30 text-brand-300 flex items-center justify-center text-[10px]">✓</span>Cuddle &amp; enrichment time</li>
+                        </ul>
+                        <div class="border-t border-brand-500/30 pt-4 space-y-1.5 text-xs text-slate-300">
+                            <div class="flex justify-between"><span>Small (&lt;10kg / Cat)</span><strong class="text-white">₱950 / night</strong></div>
+                            <div class="flex justify-between"><span>Medium (10–14kg)</span><strong class="text-white">₱1,300 / night</strong></div>
+                            <div class="flex justify-between"><span>Large (15–19kg)</span><strong class="text-white">₱1,800 / night</strong></div>
+                            <div class="flex justify-between"><span>XL (20kg+)</span><strong class="text-white">₱2,400 / night</strong></div>
+                        </div>
+                        <button onclick="openHotelBooking('Comfort Suite')" class="mt-5 w-full py-3 bg-brand-500 hover:bg-brand-600 text-white font-bold rounded-xl text-sm transition-all shadow-lg shadow-brand-500/30">Book Comfort Suite</button>
+                    </div>
+
+                    <!-- Luxury Paw Palace -->
+                    <div class="group relative bg-slate-800 border border-yellow-500/30 hover:border-yellow-400/60 rounded-3xl p-7 flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-yellow-500/10">
+                        <div class="flex items-center justify-between mb-5">
+                            <div class="w-12 h-12 rounded-2xl bg-yellow-500/10 group-hover:bg-yellow-500/20 flex items-center justify-center text-2xl transition-colors">👑</div>
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-yellow-500 border border-yellow-500/30 px-2 py-1 rounded-full">Luxury</span>
+                        </div>
+                        <h3 class="text-xl font-extrabold text-white mb-1">Paw Palace</h3>
+                        <p class="text-slate-400 text-sm mb-6 leading-relaxed">A private luxury suite with AC, premium bedding, video check-ins, and 1-on-1 staff care.</p>
+                        <ul class="space-y-2 text-sm text-slate-400 mb-8 flex-1">
+                            <li class="flex items-center gap-2"><span class="w-4 h-4 rounded-full bg-yellow-500/20 text-yellow-400 flex items-center justify-center text-[10px]">✓</span>Air-conditioned private room</li>
+                            <li class="flex items-center gap-2"><span class="w-4 h-4 rounded-full bg-yellow-500/20 text-yellow-400 flex items-center justify-center text-[10px]">✓</span>Premium orthopedic bed</li>
+                            <li class="flex items-center gap-2"><span class="w-4 h-4 rounded-full bg-yellow-500/20 text-yellow-400 flex items-center justify-center text-[10px]">✓</span>Unlimited meals &amp; treats</li>
+                            <li class="flex items-center gap-2"><span class="w-4 h-4 rounded-full bg-yellow-500/20 text-yellow-400 flex items-center justify-center text-[10px]">✓</span>Live video check-in</li>
+                            <li class="flex items-center gap-2"><span class="w-4 h-4 rounded-full bg-yellow-500/20 text-yellow-400 flex items-center justify-center text-[10px]">✓</span>Dedicated staff handler</li>
+                            <li class="flex items-center gap-2"><span class="w-4 h-4 rounded-full bg-yellow-500/20 text-yellow-400 flex items-center justify-center text-[10px]">✓</span>Complimentary bath on checkout</li>
+                        </ul>
+                        <div class="border-t border-yellow-500/20 pt-4 space-y-1.5 text-xs text-slate-400">
+                            <div class="flex justify-between"><span>Small (&lt;10kg / Cat)</span><strong class="text-white">₱1,500 / night</strong></div>
+                            <div class="flex justify-between"><span>Medium (10–14kg)</span><strong class="text-white">₱2,000 / night</strong></div>
+                            <div class="flex justify-between"><span>Large (15–19kg)</span><strong class="text-white">₱2,800 / night</strong></div>
+                            <div class="flex justify-between"><span>XL (20kg+)</span><strong class="text-white">₱3,500 / night</strong></div>
+                        </div>
+                        <button onclick="openHotelBooking('Paw Palace')" class="mt-5 w-full py-3 bg-yellow-500/20 hover:bg-yellow-500 text-yellow-400 hover:text-white font-bold rounded-xl text-sm transition-all border border-yellow-500/30 hover:border-yellow-500">Book Paw Palace</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── WEEKLY VIEW ── -->
+            <div id="hotel-week" class="hidden hotel-view">
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-slate-800 border border-slate-700 rounded-3xl p-7 flex flex-col">
+                        <div class="w-12 h-12 rounded-2xl bg-slate-700 flex items-center justify-center text-2xl mb-5">🛖</div>
+                        <h3 class="text-xl font-extrabold text-white mb-1">Cozy Den</h3>
+                        <p class="text-slate-400 text-sm mb-6">7-night stay, same great care. Save ~15% vs nightly rate.</p>
+                        <div class="flex-1 border-t border-slate-700 pt-4 space-y-1.5 text-xs text-slate-400">
+                            <div class="flex justify-between"><span>Small / Cat</span><strong class="text-white">₱3,850 / week</strong></div>
+                            <div class="flex justify-between"><span>Medium</span><strong class="text-white">₱5,350 / week</strong></div>
+                            <div class="flex justify-between"><span>Large</span><strong class="text-white">₱7,700 / week</strong></div>
+                            <div class="flex justify-between"><span>XL</span><strong class="text-white">₱10,700 / week</strong></div>
+                        </div>
+                        <p class="text-[10px] text-brand-400 font-bold mt-3">Save ₱700–₱1,900 vs 7 nights!</p>
+                        <button onclick="openHotelBooking('Cozy Den (Weekly)')" class="mt-5 w-full py-3 bg-slate-700 hover:bg-brand-600 text-white font-bold rounded-xl text-sm transition-all">Book Weekly Den</button>
+                    </div>
+                    <div class="bg-gradient-to-b from-brand-900/80 to-slate-900 border-2 border-brand-500/50 rounded-3xl p-7 flex flex-col scale-[1.02]">
+                        <div class="w-12 h-12 rounded-2xl bg-brand-500/20 flex items-center justify-center text-2xl mb-5">🛋️</div>
+                        <h3 class="text-xl font-extrabold text-white mb-1">Comfort Suite</h3>
+                        <p class="text-slate-300 text-sm mb-6">7-night suite stay with daily play &amp; photo updates. Best value.</p>
+                        <div class="flex-1 border-t border-brand-500/30 pt-4 space-y-1.5 text-xs text-slate-300">
+                            <div class="flex justify-between"><span>Small / Cat</span><strong class="text-white">₱5,600 / week</strong></div>
+                            <div class="flex justify-between"><span>Medium</span><strong class="text-white">₱7,700 / week</strong></div>
+                            <div class="flex justify-between"><span>Large</span><strong class="text-white">₱10,700 / week</strong></div>
+                            <div class="flex justify-between"><span>XL</span><strong class="text-white">₱14,200 / week</strong></div>
+                        </div>
+                        <p class="text-[10px] text-brand-400 font-bold mt-3">Save ₱1,050–₱2,600 vs 7 nights!</p>
+                        <button onclick="openHotelBooking('Comfort Suite (Weekly)')" class="mt-5 w-full py-3 bg-brand-500 hover:bg-brand-600 text-white font-bold rounded-xl text-sm transition-all shadow-lg shadow-brand-500/30">Book Weekly Suite</button>
+                    </div>
+                    <div class="bg-slate-800 border border-yellow-500/30 rounded-3xl p-7 flex flex-col">
+                        <div class="w-12 h-12 rounded-2xl bg-yellow-500/10 flex items-center justify-center text-2xl mb-5">👑</div>
+                        <h3 class="text-xl font-extrabold text-white mb-1">Paw Palace</h3>
+                        <p class="text-slate-400 text-sm mb-6">Full luxury for a week. AC room, live video, dedicated handler every day.</p>
+                        <div class="flex-1 border-t border-yellow-500/20 pt-4 space-y-1.5 text-xs text-slate-400">
+                            <div class="flex justify-between"><span>Small / Cat</span><strong class="text-white">₱8,900 / week</strong></div>
+                            <div class="flex justify-between"><span>Medium</span><strong class="text-white">₱11,900 / week</strong></div>
+                            <div class="flex justify-between"><span>Large</span><strong class="text-white">₱16,600 / week</strong></div>
+                            <div class="flex justify-between"><span>XL</span><strong class="text-white">₱20,700 / week</strong></div>
+                        </div>
+                        <p class="text-[10px] text-yellow-400 font-bold mt-3">Save ₱1,600–₱3,800 vs 7 nights!</p>
+                        <button onclick="openHotelBooking('Paw Palace (Weekly)')" class="mt-5 w-full py-3 bg-yellow-500/20 hover:bg-yellow-500 text-yellow-400 hover:text-white font-bold rounded-xl text-sm transition-all border border-yellow-500/30">Book Weekly Palace</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── STAY CALCULATOR ── -->
+            <div class="mt-14 bg-slate-800/60 border border-slate-700 rounded-3xl p-8 backdrop-blur-sm">
+                <div class="flex flex-col lg:flex-row gap-8 items-start lg:items-center">
+                    <div class="flex-1">
+                        <h3 class="text-xl font-extrabold text-white mb-1">Stay Calculator</h3>
+                        <p class="text-slate-400 text-sm">Pick your details and get an instant estimate.</p>
+                    </div>
+                    <div class="flex-1 grid sm:grid-cols-3 gap-4 w-full">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 mb-1.5 uppercase tracking-wider">Room Type</label>
+                            <select id="calc-room" onchange="updateHotelCalc()" class="w-full bg-slate-700 border border-slate-600 text-white text-sm rounded-xl px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                                <option value="den">Cozy Den</option>
+                                <option value="suite" selected>Comfort Suite</option>
+                                <option value="palace">Paw Palace</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 mb-1.5 uppercase tracking-wider">Pet Size</label>
+                            <select id="calc-size" onchange="updateHotelCalc()" class="w-full bg-slate-700 border border-slate-600 text-white text-sm rounded-xl px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                                <option value="small">Small / Cat (&lt;10kg)</option>
+                                <option value="medium">Medium (10–14kg)</option>
+                                <option value="large" selected>Large (15–19kg)</option>
+                                <option value="xl">XL (20kg+)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 mb-1.5 uppercase tracking-wider">Nights</label>
+                            <input type="number" id="calc-nights" value="3" min="1" max="90" oninput="updateHotelCalc()" class="w-full bg-slate-700 border border-slate-600 text-white text-sm rounded-xl px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                        </div>
+                    </div>
+                    <div class="lg:text-right shrink-0">
+                        <p class="text-xs text-slate-500 uppercase tracking-wider font-bold mb-1">Estimated Total</p>
+                        <p id="calc-total" class="text-4xl font-extrabold text-brand-400">₱5,400</p>
+                        <p id="calc-label" class="text-xs text-slate-400 mt-1">Comfort Suite · Large · 3 nights</p>
+                        <button onclick="openHotelBooking(document.getElementById('calc-room').options[document.getElementById('calc-room').selectedIndex].text)" class="mt-3 px-6 py-2.5 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl text-sm transition-all shadow-lg shadow-brand-500/20">Book This Stay</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add-ons strip -->
+            <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-4 flex items-center gap-3">
+                    <span class="text-2xl">💊</span>
+                    <div><p class="font-bold text-white text-sm">Medication Admin</p><p class="text-slate-400 text-xs">+₱100 / day</p></div>
+                </div>
+                <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-4 flex items-center gap-3">
+                    <span class="text-2xl">🚗</span>
+                    <div><p class="font-bold text-white text-sm">Pick-Up &amp; Drop-Off</p><p class="text-slate-400 text-xs">+₱300 per trip</p></div>
+                </div>
+                <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-4 flex items-center gap-3">
+                    <span class="text-2xl">✂️</span>
+                    <div><p class="font-bold text-white text-sm">Checkout Grooming</p><p class="text-slate-400 text-xs">+₱350–₱1,400</p></div>
+                </div>
+                <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-4 flex items-center gap-3">
+                    <span class="text-2xl">📸</span>
+                    <div><p class="font-bold text-white text-sm">Daily Photo Report</p><p class="text-slate-400 text-xs">Included in all suites</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-sm">&copy; 2026 Pet Society Salon. Built for Next-Gen Pet Care.</p>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // Three.js Background
+        const container = document.getElementById('canvas-container');
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        container.appendChild(renderer.domElement);
+        const geometry = new THREE.BufferGeometry();
+        const count = 600;
+        const positions = new Float32Array(count * 3);
+        for (let i = 0; i < count * 3; i++) positions[i] = (Math.random() - 0.5) * 10;
+        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        const material = new THREE.PointsMaterial({ size: 0.03, color: 0x14b8a6, transparent: true, opacity: 0.8 });
+        const sphere = new THREE.Points(geometry, material);
+        scene.add(sphere);
+        camera.position.z = 4;
+        function animate() { requestAnimationFrame(animate); sphere.rotation.x += 0.001; sphere.rotation.y += 0.002; renderer.render(scene, camera); }
+        animate();
+
+        // GSAP
+        gsap.registerPlugin(ScrollTrigger);
+        gsap.from(".hero-text-animate", { duration: 1.2, y: 50, opacity: 0, ease: "power3.out" });
+        gsap.from(".hero-card-animate", { duration: 1.5, x: 50, opacity: 0, delay: 0.3, ease: "power3.out" });
+
+        // Category Switcher
+        function switchCategory(cat) {
+            const dogs = document.getElementById('dogs-view');
+            const cats = document.getElementById('cats-view');
+            const btnDogs = document.getElementById('btn-dogs');
+            const btnCats = document.getElementById('btn-cats');
+            if (cat === 'dogs') {
+                dogs.classList.remove('hidden'); cats.classList.add('hidden');
+                btnDogs.className = "px-8 py-3 rounded-xl font-bold text-sm bg-white text-slate-900 shadow-md";
+                btnCats.className = "px-8 py-3 rounded-xl font-bold text-sm text-slate-600 hover:text-slate-900";
+            } else {
+                cats.classList.remove('hidden'); dogs.classList.add('hidden');
+                btnCats.className = "px-8 py-3 rounded-xl font-bold text-sm bg-white text-slate-900 shadow-md";
+                btnDogs.className = "px-8 py-3 rounded-xl font-bold text-sm text-slate-600 hover:text-slate-900";
+            }
+        }
+
+        // ===================== PRICING DATA =====================
+        const PRICING_KNOWLEDGE = {
+            dogTiers: [
+                { name: "Small Dog (<10kg)",       minWeight: 0,  maxWeight: 9.9,  firstBath: 350, bathFluff: 550,  fullGroom: 800  },
+                { name: "Medium Dog (10kg–14kg)",  minWeight: 10, maxWeight: 14.9, firstBath: 450, bathFluff: 650,  fullGroom: 1000 },
+                { name: "Large Dog (15kg–19kg)",   minWeight: 15, maxWeight: 19.9, firstBath: 550, bathFluff: 850,  fullGroom: 1400 },
+                { name: "Extra Large Dog (20kg+)", minWeight: 20, maxWeight: 999,  firstBath: 700, bathFluff: 1500, fullGroom: 1800 }
+            ],
+            catTier: { name: "Cat (All Breeds & Sizes)", firstBath: 350, bathFluff: 550, fullGroom: 800 },
+            addOns: [
+                { id: "teeth", name: "Teeth Brushing",       price: 150 },
+                { id: "nails", name: "Nail Trim & File",     price: 100 },
+                { id: "dematt",name: "De-matting Treatment", price: 200 },
+                { id: "flea",  name: "Anti-Flea & Tick Dip", price: 250 }
+            ]
+        };
+
+        // ===================== CHAT SETUP =====================
+        const chatToggle  = document.getElementById('chatToggle');
+        const chatWindow  = document.getElementById('chatWindow');
+        const closeChat   = document.getElementById('closeChat');
+        const chatBody    = document.getElementById('chatBody');
+        const userInput   = document.getElementById('userInput');
+
+        chatToggle.onclick = () => {
+            if (chatWindow.classList.contains('hidden')) {
+                chatWindow.classList.remove('hidden');
+                chatWindow.style.display = 'flex';
+            } else {
+                chatWindow.classList.add('hidden');
+                chatWindow.style.display = '';
+            }
+        };
+        closeChat.onclick = () => { chatWindow.classList.add('hidden'); chatWindow.style.display = ''; };
+
+        function openBookingChat() {
+            chatWindow.classList.remove('hidden');
+            chatWindow.style.display = 'flex';
+            startBookingFlow();
+        }
+
+        function scrollToBottom() {
+            requestAnimationFrame(() => { chatBody.scrollTop = chatBody.scrollHeight; });
+        }
+
+        let bookingData = { step: 0, petType: '', service: '', addOns: [], date: '', ownerName: '' };
+
+        // ===================== WEIGHT EXTRACTION =====================
+        function extractWeightFromText(text) {
+            const matches = text.match(/(\d+(\.\d+)?)\s*(kg|kilos|kilo|kilograms|lbs|pounds)?/i);
+            if (!matches) return null;
+            let val = parseFloat(matches[1]);
+            const unit = matches[3] ? matches[3].toLowerCase() : 'kg';
+            if (unit.includes('lb') || unit.includes('pound')) val = val * 0.453592;
+            return val;
+        }
+
+        // ===================== KILE'S BRAIN =====================
+        // Intent detection helpers
+        function isCatMessage(q) {
+            return q.includes('cat') || q.includes('feline') || q.includes('kitten') ||
+                   q.includes('puspin') || q.includes('persian') || q.includes('maine coon') ||
+                   q.includes('maine') || q.includes('ragdoll') || q.includes('siamese');
+        }
+
+        function isDogMessage(q) {
+            return q.includes('dog') || q.includes('puppy') || q.includes('pup') ||
+                   q.includes('canine') || q.includes('husky') || q.includes('aspin') ||
+                   q.includes('shih tzu') || q.includes('maltese') || q.includes('pomeranian') ||
+                   q.includes('labrador') || q.includes('golden') || q.includes('retriever');
+        }
+
+        function isAskingAboutPrice(q) {
+            return q.includes('how much') || q.includes('price') || q.includes('rate') ||
+                   q.includes('cost') || q.includes('fee') || q.includes('charge') ||
+                   q.includes('magkano') || q.includes('how much') || q.includes('quote');
+        }
+
+        function isAskingAboutService(q) {
+            return q.includes('service') || q.includes('offer') || q.includes('groom') ||
+                   q.includes('bath') || q.includes('haircut') || q.includes('trim') ||
+                   q.includes('what do you') || q.includes('what can') || q.includes('package');
+        }
+
+        function isAskingAboutAddons(q) {
+            return q.includes('add-on') || q.includes('addon') || q.includes('add on') ||
+                   q.includes('extra') || q.includes('teeth') || q.includes('nail') ||
+                   q.includes('flea') || q.includes('tick') || q.includes('demat') || q.includes('de-mat');
+        }
+
+        function isAskingAboutBooking(q) {
+            return q.includes('book') || q.includes('reserve') || q.includes('appointment') ||
+                   q.includes('schedule') || q.includes('when') || q.includes('slot') || q.includes('available');
+        }
+
+        function isAskingAboutHours(q) {
+            return q.includes('hour') || q.includes('open') || q.includes('close') ||
+                   q.includes('time') || q.includes('bukas') || q.includes('oras');
+        }
+
+        function isAskingAboutLocation(q) {
+            return q.includes('location') || q.includes('address') || q.includes('where') ||
+                   q.includes('saan') || q.includes('lugar') || q.includes('map');
+        }
+
+        function isAskingAboutBreed(q) {
+            return q.includes('breed') || q.includes('accept') || q.includes('handle') ||
+                   q.includes('husky') || q.includes('aspin') || q.includes('puspin') ||
+                   q.includes('what breed') || q.includes('what kind') || q.includes('any breed');
+        }
+
+        function processBotReply(text) {
+            const q = text.toLowerCase();
+            const weight = extractWeightFromText(text);
+
+            setTimeout(() => {
+
+                // ── 1. CAT QUESTIONS (always check cat FIRST before weight) ──
+                if (isCatMessage(q)) {
+                    handleCatPricingQuery();
+                    return;
+                }
+
+                // ── 2. DOG WITH A WEIGHT ──
+                if (weight !== null && (isDogMessage(q) || isAskingAboutPrice(q) || q.includes('kg') || q.includes('weigh'))) {
+                    handleWeightPricingQuery(weight);
+                    return;
+                }
+
+                // ── 3. BOOKING INTENT ──
+                if (isAskingAboutBooking(q)) {
+                    startBookingFlow();
+                    return;
+                }
+
+                // ── 4. ADD-ONS ──
+                if (isAskingAboutAddons(q)) {
+                    appendBotMsg(
+                        "We offer these **optional add-ons** for any grooming package:\n\n" +
+                        "🦷 **Teeth Brushing** — +₱150\n" +
+                        "💅 **Nail Trim & File** — +₱100\n" +
+                        "🪮 **De-matting Treatment** — +₱200\n" +
+                        "🪲 **Anti-Flea & Tick Dip** — +₱250\n\n" +
+                        "Add any of these when you're selecting a package. Want to book a session?"
+                    );
+                    return;
+                }
+
+                // ── 5. SERVICES ──
+                if (isAskingAboutService(q)) {
+                    appendBotMsg(
+                        "We offer the following grooming services:\n\n" +
+                        "✂️ **Full Grooming** — Bath, Blow Dry, Haircut, Nail Trim & Ear Cleaning\n" +
+                        "🧼 **Bath & Fluff** — Shampoo, Conditioning, Blow Dry & De-shedding\n" +
+                        "🛁 **First Bath Special** — Gentle intro for puppies & kittens!\n\n" +
+                        "Plus optional **add-ons**: Teeth Brushing, De-matting, Nail File, Anti-Flea Dip.\n\n" +
+                        "Available for **all dog sizes** and **all cat breeds**. Tell me your pet type for exact pricing!"
+                    );
+                    return;
+                }
+
+                // ── 6. GENERAL PRICING (no pet type specified) ──
+                if (isAskingAboutPrice(q)) {
+                    appendBotMsg(
+                        "Here's a quick overview of our rates:\n\n" +
+                        "🐶 **Dogs (by weight):**\n" +
+                        "• Small (<10kg): ₱350 – ₱800\n" +
+                        "• Medium (10–14kg): ₱650 – ₱1,000\n" +
+                        "• Large (15–19kg): ₱850 – ₱1,400\n" +
+                        "• XL (20kg+): ₱1,500 – ₱1,800\n\n" +
+                        "🐱 **Cats (all breeds):** ₱350 – ₱800\n\n" +
+                        "Tell me your pet's type and weight for an exact quote!"
+                    );
+                    return;
+                }
+
+                // ── 7. HOURS ──
+                if (isAskingAboutHours(q)) {
+                    appendBotMsg(
+                        "For our exact operating hours, please visit the **Contact** page or message us on our social channels. Our team will confirm availability and book your slot right away! 📅"
+                    );
+                    return;
+                }
+
+                // ── 8. LOCATION ──
+                if (isAskingAboutLocation(q)) {
+                    appendBotMsg(
+                        "For our exact address and directions, please check the **Contact** page. You can also reach out to us directly and we'll send you a pin! 📍"
+                    );
+                    return;
+                }
+
+                // ── 9. BREED QUESTIONS ──
+                if (isAskingAboutBreed(q)) {
+                    appendBotMsg(
+                        "We handle **all breeds** with specialized care! 🐾\n\n" +
+                        "🐕 **Dogs we love:** Siberian Huskies, Golden Retrievers, Labrador, Shih Tzu, Maltese, Pomeranian, Aspins & more\n" +
+                        "🐱 **Cats we love:** Maine Coons, Persians, Ragdolls, Siamese, Puspins & all other breeds\n\n" +
+                        "We use **gentle, low-stress handling** — perfect for first-timers and anxious pets!"
+                    );
+                    return;
+                }
+
+                // ── 10. FALLBACK ──
+                appendBotMsg(
+                    "I'm **Kile**, Pet Society's AI assistant! 🐾 Here's what I can help you with:\n\n" +
+                    "🐱 **Cat pricing** — ask *'How much for a cat?'*\n" +
+                    "🐶 **Dog pricing** — tell me *'My dog is 8kg'*\n" +
+                    "✂️ **Services** — ask *'What services do you offer?'*\n" +
+                    "➕ **Add-ons** — ask *'What are your add-ons?'*\n" +
+                    "📅 **Book** — say *'I want to book'*\n\n" +
+                    "What would you like to know?"
+                );
+
+            }, 400);
+        }
+
+        // ===================== PRICING HANDLERS =====================
+        function handleWeightPricingQuery(weight) {
+            const tier = PRICING_KNOWLEDGE.dogTiers.find(t => weight >= t.minWeight && weight <= t.maxWeight) || PRICING_KNOWLEDGE.dogTiers[0];
+            let reply = `For a **${weight}kg dog**, your pet falls into the **${tier.name}** tier! 🐶\n\n`;
+            reply += `Service options:\n`;
+            reply += `• **Full Grooming:** ₱${tier.fullGroom} *(Bath, Haircut, Nail Trim, Ear Cleaning)*\n`;
+            reply += `• **Bath & Fluff:** ₱${tier.bathFluff} *(Blow Dry & De-shedding)*\n`;
+            if (tier.firstBath) reply += `• **First Bath Special:** ₱${tier.firstBath}\n`;
+            reply += `\n✨ **Optional Add-Ons available below:**`;
+            appendBotMsg(reply);
+            renderInteractivePriceCard(tier);
+        }
+
+        function handleCatPricingQuery() {
+            const tier = PRICING_KNOWLEDGE.catTier;
+            let reply = `For **Cats (All Breeds & Sizes)**, we offer gentle quiet-room handling 🐱\n\n`;
+            reply += `Service options:\n`;
+            reply += `• **Full Grooming:** ₱${tier.fullGroom} *(Bath, Blow Dry, Trim, Nail, Ear Cleaning)*\n`;
+            reply += `• **Bath & Fluff:** ₱${tier.bathFluff} *(Shampoo, Condition & Blow Dry)*\n`;
+            reply += `• **Cat First Bath:** ₱${tier.firstBath} *(Perfect for first-timers!)*\n\n`;
+            reply += `✨ **Optional Add-Ons available below:**`;
+            appendBotMsg(reply);
+            renderInteractivePriceCard({ name: tier.name, fullGroom: tier.fullGroom, bathFluff: tier.bathFluff, firstBath: tier.firstBath });
+        }
+
+        // ===================== INTERACTIVE PRICE CARD =====================
+        function renderInteractivePriceCard(tier) {
+            const cardId = 'card_' + Date.now();
+            let html = `
+                <div id="${cardId}" class="bg-white p-4 rounded-2xl border border-brand-200 shadow-md space-y-3 mt-2 text-xs text-slate-700">
+                    <p class="font-bold text-slate-900 border-b border-slate-100 pb-1.5 flex justify-between items-center">
+                        <span>Select Package:</span>
+                        <span class="text-brand-600 font-extrabold">${tier.name}</span>
+                    </p>
+                    <div class="space-y-1.5">
+                        <label class="flex items-center gap-2 p-2 rounded-xl bg-slate-50 border border-slate-200 cursor-pointer hover:bg-brand-50 transition-colors">
+                            <input type="radio" name="service_${cardId}" value="Full Grooming (₱${tier.fullGroom})" checked onchange="updateCalc('${cardId}', ${tier.fullGroom}, ${tier.fullGroom}, ${tier.bathFluff})">
+                            <span class="font-bold">Full Grooming</span>
+                            <span class="ml-auto font-extrabold text-slate-900">₱${tier.fullGroom}</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-2 rounded-xl bg-slate-50 border border-slate-200 cursor-pointer hover:bg-brand-50 transition-colors">
+                            <input type="radio" name="service_${cardId}" value="Bath & Fluff (₱${tier.bathFluff})" onchange="updateCalc('${cardId}', ${tier.bathFluff}, ${tier.fullGroom}, ${tier.bathFluff})">
+                            <span class="font-bold">Bath & Fluff</span>
+                            <span class="ml-auto font-extrabold text-slate-900">₱${tier.bathFluff}</span>
+                        </label>`;
+            if (tier.firstBath) {
+                html += `
+                        <label class="flex items-center gap-2 p-2 rounded-xl bg-slate-50 border border-slate-200 cursor-pointer hover:bg-brand-50 transition-colors">
+                            <input type="radio" name="service_${cardId}" value="First Bath (₱${tier.firstBath})" onchange="updateCalc('${cardId}', ${tier.firstBath}, ${tier.fullGroom}, ${tier.bathFluff})">
+                            <span class="font-bold">First Bath Special</span>
+                            <span class="ml-auto font-extrabold text-slate-900">₱${tier.firstBath}</span>
+                        </label>`;
+            }
+            html += `
+                    </div>
+                    <p class="font-bold text-slate-900 pt-1">Optional Add-Ons:</p>
+                    <div class="grid grid-cols-2 gap-1.5">`;
+            PRICING_KNOWLEDGE.addOns.forEach(addon => {
+                html += `
+                        <label class="flex items-center gap-1.5 p-1.5 rounded-lg bg-slate-50 border border-slate-100 text-[11px] cursor-pointer hover:bg-slate-100">
+                            <input type="checkbox" class="addon-check_${cardId}" value="${addon.name}" data-price="${addon.price}" onchange="updateCalc('${cardId}', null, ${tier.fullGroom}, ${tier.bathFluff})">
+                            <span>${addon.name}</span>
+                            <span class="ml-auto text-slate-500">+₱${addon.price}</span>
+                        </label>`;
+            });
+            html += `
+                    </div>
+                    <div class="pt-2 border-t border-slate-100 flex justify-between items-center">
+                        <div>
+                            <span class="text-[10px] text-slate-400 block">Total Estimate:</span>
+                            <span id="total_${cardId}" class="text-base font-extrabold text-brand-600">₱${tier.fullGroom}</span>
+                        </div>
+                        <button onclick="confirmSelectedPricing('${cardId}', '${tier.name}')" class="px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl transition-all shadow-md shadow-brand-500/20">
+                            Book This Package
+                        </button>
+                    </div>
+                </div>`;
+            chatBody.insertAdjacentHTML('beforeend', html);
+            scrollToBottom();
+        }
+
+        function updateCalc(cardId, directBasePrice, defaultFull, defaultBath) {
+            const card = document.getElementById(cardId);
+            const selectedService = card.querySelector(`input[name="service_${cardId}"]:checked`);
+            let basePrice = 0;
+            if (directBasePrice !== null) {
+                basePrice = directBasePrice;
+            } else {
+                if (selectedService.value.includes('Full')) basePrice = defaultFull;
+                else basePrice = defaultBath;
+            }
+            let addonTotal = 0;
+            card.querySelectorAll(`.addon-check_${cardId}:checked`).forEach(cb => { addonTotal += parseFloat(cb.getAttribute('data-price')); });
+            document.getElementById(`total_${cardId}`).innerText = `₱${basePrice + addonTotal}`;
+        }
+
+        function confirmSelectedPricing(cardId, tierName) {
+            const card = document.getElementById(cardId);
+            const serviceVal = card.querySelector(`input[name="service_${cardId}"]:checked`).value;
+            const addons = [];
+            card.querySelectorAll(`.addon-check_${cardId}:checked`).forEach(cb => addons.push(cb.value));
+            bookingData = { step: 3, petType: tierName, service: serviceVal, addOns: addons, date: '', ownerName: '' };
+            const summaryStr = `${tierName} | ${serviceVal}` + (addons.length ? ` + (${addons.join(', ')})` : '');
+            appendUserMsg(`Book: ${summaryStr}`);
+            appendBotMsg(`Excellent choice! 🐾 What date & time works best? (e.g., "Tomorrow at 2 PM" or "Friday at 10 AM")`);
+        }
+
+        // ===================== BOOKING FLOW =====================
+        function startBookingFlow() {
+            bookingData = { step: 1, petType: '', service: '', addOns: [], date: '', ownerName: '' };
+            appendBotMsg("Let's get your appointment set! 🐾\nFirst — what type of pet are you bringing?");
+            appendActionButtons([
+                { label: '🐶 Small Dog (<10kg)',   val: 'Small Dog (<10kg)'   },
+                { label: '🐶 Medium Dog (10–14kg)',val: 'Medium Dog (10–14kg)'},
+                { label: '🐶 Large Dog (15–19kg)', val: 'Large Dog (15–19kg)' },
+                { label: '🐶 XL Dog (20kg+)',      val: 'XL Dog (20kg+)'      },
+                { label: '🐱 Cat (All Breeds)',    val: 'Cat'                 }
+            ]);
+        }
+
+        function startBookingFor(presetSize) {
+            chatWindow.classList.remove('hidden');
+            chatWindow.style.display = 'flex';
+            bookingData = { step: 2, petType: presetSize, service: '', addOns: [], date: '', ownerName: '' };
+            appendBotMsg(`Great! Setting up for **${presetSize}**. Which service would you like?`);
+            appendActionButtons([
+                { label: '✂️ Full Grooming',      val: 'Full Grooming'   },
+                { label: '🧼 Bath & Fluff',        val: 'Bath & Fluff'    },
+                { label: '🛁 First Bath Special',  val: 'First Bath'      }
+            ]);
+        }
+
+        function handleBookingStep(inputVal) {
+            if (bookingData.step === 1) {
+                bookingData.petType = inputVal; bookingData.step = 2;
+                appendBotMsg(`Got it — **${inputVal}**! Which service package would you like?`);
+                appendActionButtons([
+                    { label: '✂️ Full Grooming',     val: 'Full Grooming'  },
+                    { label: '🧼 Bath & Fluff',       val: 'Bath & Fluff'   },
+                    { label: '🛁 First Bath Special', val: 'First Bath'     }
+                ]);
+            } else if (bookingData.step === 2) {
+                bookingData.service = inputVal; bookingData.step = 3;
+                appendBotMsg(`Perfect! What date & time works for you? (e.g., "Tomorrow at 2 PM" or "Friday at 10 AM")`);
+            } else if (bookingData.step === 3) {
+                bookingData.date = inputVal; bookingData.step = 4;
+                appendBotMsg(`Almost done! What is your **full name** and **best contact number** so our team can confirm your slot?`);
+            } else if (bookingData.step === 4) {
+                bookingData.ownerName = inputVal; bookingData.step = 0;
+                appendBotMsg(`🎉 **Reservation Request Received!** Here's your summary:`);
+                renderReceiptCard();
+            }
+        }
+
+        // ── PASTE YOUR GOOGLE APPS SCRIPT URL BELOW ──
+        // Follow SETUP_GUIDE.md to get this URL, then replace the placeholder.
+        const BOOKING_WEBHOOK_URL = 'PASTE_YOUR_APPS_SCRIPT_URL_HERE';
+
+        function submitBookingToSheets(data) {
+            if (!BOOKING_WEBHOOK_URL || BOOKING_WEBHOOK_URL.includes('PASTE_YOUR')) return;
+            fetch(BOOKING_WEBHOOK_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'text/plain' }, // Apps Script requires text/plain for no-CORS
+                body: JSON.stringify(data)
+            }).catch(function() { /* silent — receipt already shown to customer */ });
+        }
+
+        function renderReceiptCard() {
+            const addonsText = bookingData.addOns.length ? bookingData.addOns.join(', ') : 'None';
+            const cardHtml = `
+                <div class="bg-gradient-to-br from-brand-900 to-slate-900 text-white p-4 rounded-2xl shadow-lg border border-brand-500/30 space-y-2 mt-2">
+                    <div class="flex justify-between items-center border-b border-slate-700 pb-2">
+                        <span class="font-bold text-xs text-brand-300 uppercase tracking-wider">Kile's Reservation Receipt</span>
+                        <span id="receipt-status" class="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[10px] font-bold">SUBMITTED</span>
+                    </div>
+                    <div class="text-xs space-y-1">
+                        <p>🐾 <strong>Pet / Size:</strong> ${bookingData.petType}</p>
+                        <p>✂️ <strong>Service:</strong> ${bookingData.service}</p>
+                        <p>✨ <strong>Add-Ons:</strong> ${addonsText}</p>
+                        <p>📅 <strong>Requested Time:</strong> ${bookingData.date}</p>
+                        <p>👤 <strong>Owner / Contact:</strong> ${bookingData.ownerName}</p>
+                    </div>
+                    <div class="pt-2 text-[10px] text-slate-400 border-t border-slate-800">
+                        Our team will call or text to confirm your exact slot. See you soon! 🐾
+                    </div>
+                </div>`;
+            chatBody.insertAdjacentHTML('beforeend', cardHtml);
+            scrollToBottom();
+
+            // Fire off to Google Sheets + trigger email
+            submitBookingToSheets({
+                timestamp:  new Date().toLocaleString('en-PH', { timeZone: 'Asia/Manila' }),
+                petType:    bookingData.petType,
+                service:    bookingData.service,
+                addOns:     addonsText,
+                date:       bookingData.date,
+                ownerName:  bookingData.ownerName,
+                status:     'Pending Confirmation'
+            });
+        }
+
+        // ===================== INPUT HANDLERS =====================
+        function sendQuickText(text) {
+            appendUserMsg(text);
+            if (bookingData.step > 0) handleBookingStep(text);
+            else processBotReply(text);
+        }
+
+        function handleKey(e) { if (e.key === 'Enter') sendMessage(); }
+
+        function sendMessage() {
+            const text = userInput.value.trim();
+            if (!text) return;
+            appendUserMsg(text);
+            userInput.value = '';
+            if (bookingData.step > 0) handleBookingStep(text);
+            else processBotReply(text);
+        }
+
+        // ===================== DOM HELPERS =====================
+        function appendUserMsg(txt) {
+            chatBody.insertAdjacentHTML('beforeend', `<div class="bg-brand-600 text-white p-3 rounded-2xl shadow-sm text-sm ml-auto max-w-[85%]">${txt}</div>`);
+            scrollToBottom();
+        }
+
+        function appendBotMsg(txt) {
+            const formatted = txt.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+            chatBody.insertAdjacentHTML('beforeend', `<div class="bg-white p-3.5 rounded-2xl border border-slate-100 shadow-sm text-slate-700 max-w-[85%] leading-relaxed">${formatted}</div>`);
+            scrollToBottom();
+            lucide.createIcons();
+        }
+
+        function appendActionButtons(btns) {
+            let html = `<div class="flex flex-wrap gap-2 pt-1">`;
+            btns.forEach(b => {
+                html += `<button onclick="handleOptionSelect('${b.label}', '${b.val}')" class="px-3 py-1.5 bg-brand-50 hover:bg-brand-100 text-brand-700 font-bold border border-brand-200 rounded-xl text-xs transition-colors">${b.label}</button>`;
+            });
+            html += `</div>`;
+            chatBody.insertAdjacentHTML('beforeend', html);
+            scrollToBottom();
+        }
+
+        function handleOptionSelect(label, val) {
+            appendUserMsg(label);
+            handleBookingStep(val);
+        }
+
+        // ===================== PET HOTEL =====================
+        const HOTEL = {
+            night: {
+                den:    { small: 650,  medium: 900,  large: 1300, xl: 1800 },
+                suite:  { small: 950,  medium: 1300, large: 1800, xl: 2400 },
+                palace: { small: 1500, medium: 2000, large: 2800, xl: 3500 }
+            },
+            week: {
+                den:    { small: 3850,  medium: 5350,  large: 7700,  xl: 10700 },
+                suite:  { small: 5600,  medium: 7700,  large: 10700, xl: 14200 },
+                palace: { small: 8900,  medium: 11900, large: 16600, xl: 20700 }
+            },
+            daycare: { small: 350, medium: 500, large: 700, xl: 950 }
+        };
+        const HOTEL_ROOM_LABELS = { den: 'Cozy Den', suite: 'Comfort Suite', palace: 'Paw Palace' };
+        const HOTEL_SIZE_LABELS = { small: 'Small/Cat (<10kg)', medium: 'Medium (10-14kg)', large: 'Large (15-19kg)', xl: 'XL (20kg+)' };
+
+        // Build day care cards on load
+        (function buildDayCareCards() {
+            const wrap = document.getElementById('hotel-day');
+            const items = [
+                { emoji: '🐱', label: 'Cats & Small Dogs', sub: 'Under 10kg', size: 'small', border: 'border-teal-500/30',   grad: 'from-teal-900/60'   },
+                { emoji: '🐶', label: 'Medium Dogs',        sub: '10–14kg',   size: 'medium', border: 'border-sky-500/30',    grad: 'from-sky-900/60'    },
+                { emoji: '🐕', label: 'Large Dogs',         sub: '15–19kg',   size: 'large',  border: 'border-brand-500/30', grad: 'from-brand-900/60'  },
+                { emoji: '🦮', label: 'Gentle Giants',      sub: '20kg+',     size: 'xl',     border: 'border-purple-500/30',grad: 'from-purple-900/60' }
+            ];
+            items.forEach(function(it) {
+                const price = HOTEL.daycare[it.size];
+                wrap.insertAdjacentHTML('beforeend',
+                    '<div class="bg-gradient-to-b ' + it.grad + ' to-slate-800 border ' + it.border + ' rounded-3xl p-6 flex flex-col items-center text-center hover:-translate-y-1 transition-transform duration-300">' +
+                    '<div class="text-5xl mb-4">' + it.emoji + '</div>' +
+                    '<h4 class="font-extrabold text-white text-lg">' + it.label + '</h4>' +
+                    '<p class="text-slate-400 text-xs mt-1 mb-5">' + it.sub + ' &middot; 7am &ndash; 7pm</p>' +
+                    '<p class="text-3xl font-extrabold text-white">&#8369;' + price + '</p>' +
+                    '<p class="text-slate-400 text-xs mt-1 mb-6">per day</p>' +
+                    '<ul class="text-xs text-slate-400 space-y-1.5 text-left w-full mb-6">' +
+                    '<li>&#10003; Supervised play sessions</li>' +
+                    '<li>&#10003; Feeding (bring your pet\'s food)</li>' +
+                    '<li>&#10003; Rest area with soft bedding</li>' +
+                    '<li>&#10003; Pick-up by 7pm sharp</li></ul>' +
+                    '<button onclick="openHotelBooking(\'Day Care \u2013 ' + it.label + '\')" class="w-full py-2.5 bg-white/10 hover:bg-brand-600 text-white font-bold rounded-xl text-sm transition-all border border-white/10">Book Day Care</button>' +
+                    '</div>');
+            });
+        })();
+
+        // Scatter tiny star dots across the hotel section bg
+        (function generateStars() {
+            const el = document.getElementById('hotelStars');
+            let html = '';
+            for (let i = 0; i < 70; i++) {
+                const s = Math.random() < 0.25 ? 2 : 1;
+                const op = (0.15 + Math.random() * 0.45).toFixed(2);
+                html += '<div style="position:absolute;width:' + s + 'px;height:' + s + 'px;border-radius:50%;background:rgba(255,255,255,' + op + ');top:' + (Math.random()*100).toFixed(2) + '%;left:' + (Math.random()*100).toFixed(2) + '%;"></div>';
+            }
+            el.innerHTML = html;
+        })();
+
+        // Hotel tab switcher
+        function switchHotelView(view) {
+            document.querySelectorAll('.hotel-view').forEach(function(el) { el.classList.add('hidden'); });
+            document.getElementById('hotel-' + view).classList.remove('hidden');
+            ['day','night','week'].forEach(function(v) {
+                const btn = document.getElementById('hbtn-' + v);
+                btn.className = v === view
+                    ? 'px-6 py-2.5 rounded-xl font-bold text-sm transition-all bg-brand-600 text-white shadow-lg shadow-brand-500/30'
+                    : 'px-6 py-2.5 rounded-xl font-bold text-sm transition-all text-slate-400 hover:text-white';
+            });
+        }
+
+        // Stay calculator
+        function updateHotelCalc() {
+            const room   = document.getElementById('calc-room').value;
+            const size   = document.getElementById('calc-size').value;
+            const nights = Math.max(1, parseInt(document.getElementById('calc-nights').value) || 1);
+            const nightly = HOTEL.night[room][size];
+            let total;
+            if (nights >= 7) {
+                const weeks = Math.floor(nights / 7);
+                const rem   = nights % 7;
+                total = HOTEL.week[room][size] * weeks + nightly * rem;
+            } else {
+                total = nightly * nights;
+            }
+            document.getElementById('calc-total').textContent = '\u20b1' + total.toLocaleString();
+            document.getElementById('calc-label').textContent =
+                HOTEL_ROOM_LABELS[room] + ' \u00b7 ' + HOTEL_SIZE_LABELS[size] + ' \u00b7 ' + nights + (nights === 1 ? ' night' : ' nights') + (nights >= 7 ? ' (weekly rate applied)' : '');
+        }
+        updateHotelCalc();
+
+        // Open hotel booking via chat
+        function openHotelBooking(roomLabel) {
+            chatWindow.classList.remove('hidden');
+            chatWindow.style.display = 'flex';
+            bookingData = { step: 3, petType: roomLabel, service: roomLabel, addOns: [], date: '', ownerName: '' };
+            appendBotMsg('Great choice! \ud83c\udfe8 You selected **' + roomLabel + '**.\n\nWhat date and time would you like to **check in**? (e.g. "Friday at 10 AM" or "August 10")');
+            scrollToBottom();
+        }
+
+        // Teach Kile about the hotel — wrap processBotReply
+        const _coreProcessBotReply = processBotReply;
+        processBotReply = function(text) {
+            const q = text.toLowerCase();
+            if (/hotel|board|boarding|overnight|day.?care|check.?in|check.?out|stay|suite|palace|kennel|lodge/i.test(q)) {
+                setTimeout(function() {
+                    appendBotMsg(
+                        'We offer **Pet Hotel** boarding for dogs and cats! \ud83c\udfe8\n\n' +
+                        '\u2600\ufe0f **Day Care** (7am\u20137pm):\n' +
+                        '\u2022 Small / Cat: \u20b1350\n' +
+                        '\u2022 Medium dog: \u20b1500\n' +
+                        '\u2022 Large dog: \u20b1700\n' +
+                        '\u2022 XL dog: \u20b1950\n\n' +
+                        '\ud83c\udf19 **Overnight Stays:**\n' +
+                        '\u2022 Cozy Den: \u20b1650\u2013\u20b11,800 / night\n' +
+                        '\u2022 Comfort Suite: \u20b1950\u2013\u20b12,400 / night\n' +
+                        '\u2022 Paw Palace (Luxury): \u20b11,500\u2013\u20b13,500 / night\n\n' +
+                        '\ud83d\udcc5 **Weekly rates** save you up to 15%!\n\n' +
+                        'Check the **Pet Hotel** section on the page for full details, or tell me how many nights and I can estimate your total! \ud83d\udc3e'
+                    );
+                }, 400);
+                return;
+            }
+            _coreProcessBotReply(text);
+        };
+    </script>
+</body>
+</html>
