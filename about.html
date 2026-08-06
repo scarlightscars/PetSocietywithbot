@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Pet Society Salon</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { color: #333; line-height: 1.6; background-color: #f9fbfd; }
+        a { text-decoration: none; color: inherit; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+        header { background: #ffffff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100; }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; }
+        .logo-container { display: flex; align-items: center; }
+        .logo-image { height: 60px; width: auto; margin-right: 15px; }
+        .logo-text { font-size: 1.5rem; font-weight: bold; color: #2b7a78; }
+        .nav-links { display: flex; list-style: none; gap: 20px; }
+        .nav-links a:hover { color: #2b7a78; }
+        .nav-links a.active { color: #2b7a78; font-weight: bold; }
+
+        .about-hero { background: #2b7a78; color: white; text-align: center; padding: 60px 20px; }
+        .about-hero h1 { font-size: 2.5rem; }
+
+        .about-section { padding: 60px 0; }
+        .about-content { max-width: 800px; margin: 0 auto; text-align: center; }
+        .about-content p { font-size: 1.1rem; margin-bottom: 20px; color: #4a5568; }
+
+        .highlights-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; margin-top: 40px; }
+        .highlight-card { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center; }
+        .highlight-card h3 { color: #172a3a; margin-bottom: 10px; }
+
+        footer { background: #172a3a; color: #fff; text-align: center; padding: 20px 0; margin-top: 40px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo-container">
+                    <img src="your-logo-file.png" alt="Pet Society Salon Logo" class="logo-image">
+                    <div class="logo-text">Pet Society Salon</div>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html" class="active">About Us</a></li>
+                    <li><a href="index.html#services">Services & Pricing</a></li>
+                    <li><a href="booking.html">Contact & Booking</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="about-hero">
+        <div class="container">
+            <h1>About Pet Society Salon</h1>
+            <p>Loving care for every paw, coat, and tail.</p>
+        </div>
+    </div>
+
+    <section class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <h2>Our Mission & Promise</h2>
+                <br>
+                <p>At <strong>Pet Society Salon</strong>, we believe grooming shouldn't be a stressful chore for your pets—it should be a pampering experience they look forward to!</p>
+                <p>Our salon is equipped with modern, safe, and hygienic facilities designed specifically to keep both energetic dogs and sensitive cats calm and relaxed. From gentle first baths for young puppies to specialized coat care for double-coated breeds and long-haired felines, our experienced team ensures your fur baby looks, smells, and feels their best.</p>
+            </div>
+
+            <div class="highlights-grid">
+                <div class="highlight-card">
+                    <h3>✂️ Gentle & Experienced</h3>
+                    <p>Certified groomers trained in low-stress, animal-friendly handling techniques.</p>
+                </div>
+                <div class="highlight-card">
+                    <h3>🌿 Premium & Organic</h3>
+                    <p>We exclusively use high-quality, hypoallergenic, and organic pet shampoos and products.</p>
+                </div>
+                <div class="highlight-card">
+                    <h3>🧼 Safe & Clean</h3>
+                    <p>Strict sanitation protocols between every appointment for complete peace of mind.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Pet Society Salon. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
